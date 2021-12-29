@@ -177,19 +177,19 @@ export const constantRoutes = [
       {
         path: 'list',
         name: '分类列表',
-        component: () => import('@/views/library/record/index'),
+        component: () => import('@/views/library/cate/index'),
         meta: { title: '分类列表', icon: 'table' }
       },
       {
         path: 'save',
         name: '分类添加',
-        component: () => import('@/views/library/record/save'),
+        component: () => import('@/views/library/cate/save'),
         meta: { title: '分类添加', icon: 'form' }
       },
       {
         path: 'edit/:id',
         name: '分类编辑',
-        component: () => import('@/views/library/record/save'),
+        component: () => import('@/views/library/cate/save'),
         meta: { title: '分类编辑', icon: 'form' },
         hidden: true
       }

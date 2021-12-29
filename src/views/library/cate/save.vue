@@ -1,39 +1,34 @@
 <template>
   <div class="app-container">
     <el-form label-width="120px">
-      <el-form-item label="">
-        <el-input v-model="admin.name" />
+      <el-form-item label="分类名称" width="200px">
+        <el-col :span="11">
+          <el-input v-model="cate.name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="分类编码" width="200px">
+        <el-col :span="11">
+          <el-input v-model="cate.name" placeholder="请输入内容" />
+        </el-col>
       </el-form-item>
 
-      <el-form-item label="讲师排序">
-        <el-input-number v-model="admin.sort" controls-position="right" min="0" />
+      <el-form-item label="位置" width="200px">
+        <el-col :span="11">
+          <el-input v-model="cate.name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="创建时间" width="200px">
+        <el-col :span="11">
+          <el-input v-model="cate.name" placeholder="可不填" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="更新时间" width="200px">
+        <el-col :span="11">
+          <el-input v-model="cate.name" placeholder="可不填" />
+        </el-col>
       </el-form-item>
 
-      <el-form-item label="讲师头衔">
-        <el-select v-model="admin.level" clearable placeholder="请选择">
-          <el-option :value="1" label="高级讲师" />
-          <el-option :value="2" label="首席讲师" />
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="讲师资历">
-        <el-input v-model="admin.career" />
-      </el-form-item>
-
-      <el-form-item label="讲师简介">
-        <el-input v-model="admin.intro" :rows="10" type="textarea" />
-      </el-form-item>
-
-      <!-- 讲师头像：TODO -->
-      <el-form-item label="讲师头像">
-
-        <!-- 头衔缩略图 -->
-        <pan-thumb :image="admin.avatar" />
-        <!-- 文件上传按钮 -->
-        <el-button type="primary" icon="el-icon-upload" @click="imagecropperShow=true">更换头像
-        </el-button>
-
-        <!--
+      <!--
   v-show：是否显示上传组件
   :key：类似于id，如果一个页面多个图片上传控件，可以做区分
   :url：后台上传的url地址
@@ -41,17 +36,6 @@
   @crop-upload-success：上传成功后的回调
     <input type="file" name="file"/>
   -->
-        <image-cropper
-          v-show="imagecropperShow"
-          :key="imagecropperKey"
-          :width="300"
-          :height="300"
-          :url="BASE_API+'/eduoss/fileoss'"
-          field="file"
-          @close="close"
-          @crop-upload-success="cropSuccess"
-        />
-      </el-form-item>
 
       <el-form-item>
         <el-button :disabled="saveBtnDisabled" type="primary" @click="saveOrUpdate">保存</el-button>
@@ -63,14 +47,11 @@
 <script>
 
 import admin from '@/api/admin/admin'
-import ImageCropper from '@/components/ImageCropper'
-import PanThumb from '@/components/PanThumb'
 
 export default {
-  components: { ImageCropper, PanThumb },
   data() {
     return {
-      admin: {
+      cate: {
         name: '',
         sort: 0,
         level: '',

@@ -1,14 +1,42 @@
 <template>
   <div class="app-container">
     <el-form label-width="120px">
-      <el-form-item label="">
-        <el-input v-model="admin.name" />
+      <el-form-item label="借阅人" width="200px">
+        <el-col :span="11">
+          <el-input v-model="record.name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="借阅人学号" width="200px">
+        <el-col :span="11">
+          <el-input v-model="record.name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="借阅订单状态" width="200px">
+        <el-col :span="11">
+          <el-input v-model="record.name" placeholder="请输入内容" />
+        </el-col>
       </el-form-item>
 
-      <el-form-item label="讲师排序">
-        <el-input-number v-model="admin.sort" controls-position="right" min="0" />
+      <el-form-item label="借阅人学号" width="200px">
+        <el-col :span="11">
+          <el-input v-model="record.name" placeholder="请输入内容" />
+        </el-col>
       </el-form-item>
-
+      <el-form-item label="借阅书籍" width="200px">
+        <el-col :span="11">
+          <el-input v-model="record.name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="书籍编码" width="200px">
+        <el-col :span="11">
+          <el-input v-model="record.name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="书籍状态" width="200px">
+        <el-col :span="11">
+          <el-input v-model="record.name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
       <el-form-item label="讲师头衔">
         <el-select v-model="admin.level" clearable placeholder="请选择">
           <el-option :value="1" label="高级讲师" />
@@ -70,7 +98,7 @@ export default {
   components: { ImageCropper, PanThumb },
   data() {
     return {
-      admin: {
+      record: {
         name: '',
         sort: 0,
         level: '',

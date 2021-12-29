@@ -2,17 +2,35 @@
   <div class="app-container">
     <el-form label-width="120px">
       <el-form-item label="管理员名称" width="200px">
-        <el-input v-model="admin.name" placeholder="请输入名称" />
+        <el-col :span="11">
+          <el-input v-model="admin.name" placeholder="请输入名称" />
+        </el-col>
       </el-form-item>
 
-      <el-form-item label="管理员账号" width="200">
-        <el-input-number v-model="admin.account" controls-position="right" min="0" />
+      <el-form-item label="管理员电话" width="200px">
+        <el-col :span="11">
+          <el-input v-model="admin.name" placeholder="请输入名称" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="管理员账户" width="200px">
+        <el-col :span="11">
+          <el-input v-model="admin.name" placeholder="请输入账户" />
+        </el-col>
       </el-form-item>
       <el-form-item label="管理员密码" width="200px">
-        <el-input v-model="admin.password" placeholder="请输入名称" />
+        <el-col :span="11">
+          <el-input v-model="admin.name" placeholder="请输入名称" />
+        </el-col>
       </el-form-item>
-      <el-form-item label="管理员电话" width="200px">
-        <el-input v-model="admin.telephone" placeholder="请输入名称" />
+      <el-form-item label="创建时间" width="200px">
+        <el-col :span="11">
+          <el-input v-model="admin.name" placeholder="可不填" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="更新时间" width="200px">
+        <el-col :span="11">
+          <el-input v-model="admin.name" placeholder="可不填" />
+        </el-col>
       </el-form-item>
       <!--
   v-show：是否显示上传组件
