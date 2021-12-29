@@ -6,10 +6,10 @@
         <el-input v-model="adminQuery.name" placeholder="姓名" />
       </el-form-item>
       <el-form-item>
-        <el-input v-model="adminQuery.name" placeholder="账户" />
+        <el-input v-model="adminQuery.account" placeholder="账户" />
       </el-form-item>
       <el-form-item>
-        <el-input v-model="adminQuery.name" placeholder="电话" />
+        <el-input v-model="adminQuery.telephone" placeholder="电话" />
       </el-form-item>
       <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button>
       <el-button type="default" @click="resetData()">清空</el-button>
@@ -35,11 +35,11 @@
 
       <el-table-column prop="name" label="姓名" width="200" />
 
-      <el-table-column prop="intro" label="账户" />
+      <el-table-column prop="account" label="账户" />
 
-      <el-table-column prop="gmtCreate" label="添加时间" width="240" />
+      <el-table-column prop="CreatedAt" label="添加时间" width="240" />
 
-      <el-table-column prop="sort" label="电话" width="200" />
+      <el-table-column prop="telephone" label="电话" width="200" />
 
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import admin from '@/api/book/book'
+import admin from '@/api/admin/admin'
 
 export default {
   data() {
@@ -76,7 +76,11 @@ export default {
       page: 1, // 当前页
       limit: 6, // 每页显示数据
       total: 0, // 总记录数
-      adminQuery: {}, // 用于条件封装的对象
+      adminQuery: {
+        name: '',
+        account: '',
+        telephone: ''
+      }, // 用于条件封装的对象
       id: 0
     }
   },
@@ -91,7 +95,7 @@ export default {
       admin.getListAdmin(this.page, this.limit, this.adminQuery)
         .then(response => {
           /* console.log(response)*/
-          this.list = response.data.rows
+          this.list = response.data.list
           this.total = response.data.total
           this.id = response.data.ID
           console.log(this.list, this.total)

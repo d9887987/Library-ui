@@ -4,7 +4,7 @@ export default {
   // 讲师列表
   getListBook(page, size, bookQuery) {
     return request({
-      url: `/v3/library/book/pageBook`,
+      url: `/library/book/pageBook`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       method: 'post',
       params: { page, size },
@@ -14,7 +14,7 @@ export default {
   // 删除讲师
   deleteBook(id) {
     return request({
-      url: `/v3/library/book`,
+      url: `/library/book/delBook`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       params: { id },
       method: 'delete'
@@ -23,7 +23,7 @@ export default {
   // 添加讲师
   addBook(book) {
     return request({
-      url: `/v3/library/book`,
+      url: `/library/book/addBook`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       method: 'post',
       data: book
@@ -32,7 +32,7 @@ export default {
   // 根据id查询
   getBookInfo(id) {
     return request({
-      url: `/v3/library/book`,
+      url: `/library/book/bookInfo`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       params: { id },
       method: 'get'
@@ -42,7 +42,7 @@ export default {
   // 修改讲师的方法
   updateBook(book) {
     return request({
-      url: `/v3/library/book`,
+      url: `/library/book/bookInfo`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       method: 'put',
       data: book
