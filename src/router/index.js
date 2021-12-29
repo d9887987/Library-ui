@@ -139,6 +139,62 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/record',
+    component: Layout,
+    redirect: '/record/table',
+    name: '借阅',
+    meta: { title: '借阅', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: '记录列表',
+        component: () => import('@/views/library/record/index'),
+        meta: { title: '记录列表', icon: 'table' }
+      },
+      {
+        path: 'save',
+        name: '记录添加',
+        component: () => import('@/views/library/record/save'),
+        meta: { title: '记录添加', icon: 'form' }
+      },
+      {
+        path: 'edit/:id',
+        name: '记录编辑',
+        component: () => import('@/views/library/record/save'),
+        meta: { title: '记录编辑', icon: 'form' },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/cate',
+    component: Layout,
+    redirect: '/cate/table',
+    name: '分类',
+    meta: { title: '分类', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: '分类列表',
+        component: () => import('@/views/library/record/index'),
+        meta: { title: '分类列表', icon: 'table' }
+      },
+      {
+        path: 'save',
+        name: '分类添加',
+        component: () => import('@/views/library/record/save'),
+        meta: { title: '分类添加', icon: 'form' }
+      },
+      {
+        path: 'edit/:id',
+        name: '分类编辑',
+        component: () => import('@/views/library/record/save'),
+        meta: { title: '分类编辑', icon: 'form' },
+        hidden: true
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
