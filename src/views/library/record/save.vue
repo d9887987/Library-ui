@@ -37,50 +37,6 @@
           <el-input v-model="record.name" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
-      <el-form-item label="讲师头衔">
-        <el-select v-model="admin.level" clearable placeholder="请选择">
-          <el-option :value="1" label="高级讲师" />
-          <el-option :value="2" label="首席讲师" />
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="讲师资历">
-        <el-input v-model="admin.career" />
-      </el-form-item>
-
-      <el-form-item label="讲师简介">
-        <el-input v-model="admin.intro" :rows="10" type="textarea" />
-      </el-form-item>
-
-      <!-- 讲师头像：TODO -->
-      <el-form-item label="讲师头像">
-
-        <!-- 头衔缩略图 -->
-        <pan-thumb :image="admin.avatar" />
-        <!-- 文件上传按钮 -->
-        <el-button type="primary" icon="el-icon-upload" @click="imagecropperShow=true">更换头像
-        </el-button>
-
-        <!--
-  v-show：是否显示上传组件
-  :key：类似于id，如果一个页面多个图片上传控件，可以做区分
-  :url：后台上传的url地址
-  @close：关闭上传组件
-  @crop-upload-success：上传成功后的回调
-    <input type="file" name="file"/>
-  -->
-        <image-cropper
-          v-show="imagecropperShow"
-          :key="imagecropperKey"
-          :width="300"
-          :height="300"
-          :url="BASE_API+'/eduoss/fileoss'"
-          field="file"
-          @close="close"
-          @crop-upload-success="cropSuccess"
-        />
-      </el-form-item>
-
       <el-form-item>
         <el-button :disabled="saveBtnDisabled" type="primary" @click="saveOrUpdate">保存</el-button>
       </el-form-item>
