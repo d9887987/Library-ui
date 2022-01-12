@@ -74,6 +74,7 @@ export default {
   data() {
     return {
       book: {
+        id: '',
         name: '',
         sort: 0,
         level: 1,

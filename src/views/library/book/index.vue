@@ -91,6 +91,7 @@ export default {
       book.getListBook(this.page, this.limit, this.userQuery)
         .then(response => {
           /* console.log(response)*/
+          this.id = response.data.id
           this.list = response.data.rows
           this.total = response.data.total
           console.log(this.list, this.total)

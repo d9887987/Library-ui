@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       admin: {
+        id: '',
         name: '',
         account: 0,
         password: '',

@@ -97,7 +97,7 @@ export default {
           /* console.log(response)*/
           this.list = response.data.list
           this.total = response.data.total
-          this.id = response.data.ID
+          this.id = response.data.id
           console.log(this.list, this.total)
         })
         .catch(error => {
@@ -118,7 +118,7 @@ export default {
         type: 'warning'
       }).then(() => {
         admin.deleteAdmin(id)
-          .then(reponse => { // 删除成功，用户提示，提示信息，并重新查询结果
+          .then(response => { // 删除成功，用户提示，提示信息，并重新查询结果
             this.$message({
               type: 'success',
               message: '删除成功!'
