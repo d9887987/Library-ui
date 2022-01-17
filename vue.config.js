@@ -33,11 +33,11 @@ module.exports = {
     port: port,
     open: true,
     host: 'localhost',
-    // port: 8080,
+    // port: 8081,
     proxy: {
       '/api': {
         // 接口地址
-        target: 'http://localhost:8081',
+        target: 'http://localhost:9528',
         // 是否代理接口，是否跨域
         changeOrigin: true,
         pathRewrite: {
@@ -49,8 +49,8 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
-    },
-    before: require('./mock/mock-server.js')
+    }
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
