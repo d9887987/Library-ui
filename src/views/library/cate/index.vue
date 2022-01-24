@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import admin from '@/api/book/book'
+import cate from '@/api/book/book'
 
 export default {
   data() {
@@ -76,7 +76,12 @@ export default {
       page: 1, // 当前页
       limit: 6, // 每页显示数据
       total: 0, // 总记录数
-      adminQuery: {}, // 用于条件封装的对象
+      cateQuery: {
+        location: '',
+        cate_name: '',
+        page_size: 6,
+        page_num: 1
+      }, // 用于条件封装的对象
       id: 0
     }
   },
@@ -88,7 +93,7 @@ export default {
       /* 每次在做分页后也要调用getlist方法*/
       this.page = page
       // 做到分页的切换，要不然默认查询第一页数组，因为每次查询第几页页数不一样
-      admin.getListAdmin(this.page, this.limit, this.adminQuery)
+      cate.getListCate(this.cateQuery)
         .then(response => {
           /* console.log(response)*/
           this.list = response.data.rows
@@ -113,7 +118,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        admin.deleteAdmin(id)
+        cate.deleteAdmin(id)
           .then(response => { // 删除成功，用户提示，提示信息，并重新查询结果
             this.$message({
               type: 'success',

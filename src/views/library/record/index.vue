@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import admin from '@/api/book/book'
+import record from '@/api/book/book'
 
 export default {
   data() {
@@ -88,7 +88,7 @@ export default {
       /* 每次在做分页后也要调用getlist方法*/
       this.page = page
       // 做到分页的切换，要不然默认查询第一页数组，因为每次查询第几页页数不一样
-      admin.getListAdmin(this.page, this.limit, this.adminQuery)
+      record.getListRecord(this.page, this.limit, this.adminQuery)
         .then(response => {
           /* console.log(response)*/
           this.list = response.data.rows
@@ -113,7 +113,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        admin.deleteAdmin(id)
+        record.deleteAdmin(id)
           .then(response => { // 删除成功，用户提示，提示信息，并重新查询结果
             this.$message({
               type: 'success',

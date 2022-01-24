@@ -2,12 +2,11 @@ import request from '@/utils/request'
 
 export default {
   // 讲师列表
-  getListCate(page, size, cateQuery) {
+  getListCate(cateQuery) {
     return request({
       url: `/library/category/pageCate`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       method: 'post',
-      params: { page, size },
       data: cateQuery// 把对象转换成json
     })
   },

@@ -77,7 +77,13 @@ export default {
       page: 1, // 当前页
       limit: 6, // 每页显示数据
       total: 0, // 总记录数
-      bookQuery: {}// 用于条件封装的对象
+      bookQuery: {
+        another: '',
+        book_name: '',
+        category_name: '',
+        page_size: 6,
+        page_num: 1
+      }// 用于条件封装的对象
     }
   },
   created() {

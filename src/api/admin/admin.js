@@ -2,12 +2,11 @@ import request from '@/utils/request'
 
 export default {
   // 管理员列表（分页查询）
-  getListAdmin(size, page, adminQuery) {
+  getListAdmin(adminQuery) {
     return request({
       url: `/library/admin/pageAdmin`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       method: 'post',
-      params: { size, page },
       data: adminQuery// 把对象转换成json
     })
   },

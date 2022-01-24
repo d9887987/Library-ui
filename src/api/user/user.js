@@ -2,12 +2,11 @@ import request from '@/utils/request'
 
 export default {
   // 讲师列表
-  getListUser(page, size, userQuery) {
+  getListUser(userQuery) {
     return request({
       url: `/library/user/pageUser`,
       // url: '/eduservice/edu-teacher/pageTeacherCondition/'+current+"/"+limit,
       method: 'post',
-      params: { page, size },
       data: userQuery// 把对象转换成json
     })
   },
