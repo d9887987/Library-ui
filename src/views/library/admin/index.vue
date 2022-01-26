@@ -3,13 +3,13 @@
     <!--查询表单-->
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item>
-        <el-input v-model="adminQuery.name" placeholder="姓名" />
+        <el-input v-model="adminQuery.name" placeholder="姓名"/>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="adminQuery.account" placeholder="账户" />
+        <el-input v-model="adminQuery.account" placeholder="账户"/>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="adminQuery.telephone" placeholder="电话" />
+        <el-input v-model="adminQuery.telephone" placeholder="电话"/>
       </el-form-item>
       <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button>
       <el-button type="default" @click="resetData()">清空</el-button>
@@ -33,13 +33,13 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="name" label="姓名" width="200" />
+      <el-table-column prop="name" label="姓名" width="200"/>
 
-      <el-table-column prop="account" label="账户" />
+      <el-table-column prop="account" label="账户"/>
 
-      <el-table-column prop="created_at" label="添加时间" width="240" />
+      <el-table-column prop="created_at" label="添加时间" width="240"/>
 
-      <el-table-column prop="telephone" label="电话" width="200" />
+      <el-table-column prop="telephone" label="电话" width="200"/>
 
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
@@ -92,6 +92,7 @@ export default {
     getList(page_num = 1) { // 页码参数
       /* 每次在做分页后也要调用getlist方法*/
       this.page_num = page_num
+      this.adminQuery.page_num = page_num
       // 做到分页的切换，要不然默认查询第一页数组，因为每次查询第几页页数不一样
       admin.getListAdmin(this.adminQuery)
         .then(response => {

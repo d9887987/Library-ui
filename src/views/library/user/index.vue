@@ -3,17 +3,17 @@
     <!--查询表单-->
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item>
-        <el-input v-model="userQuery.user_name" placeholder="用户名" />
+        <el-input v-model="userQuery.user_name" placeholder="用户名"/>
       </el-form-item>
 
       <el-form-item>
-        <el-input v-model="userQuery.student_card" placeholder="学号" />
+        <el-input v-model="userQuery.student_card" placeholder="学号"/>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="userQuery.telephone" placeholder="电话号码" />
+        <el-input v-model="userQuery.telephone" placeholder="电话号码"/>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="userQuery.garde" placeholder="年级" />
+        <el-input v-model="userQuery.garde" placeholder="年级"/>
       </el-form-item>
       <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button>
       <el-button type="default" @click="resetData()">清空</el-button>
@@ -36,11 +36,11 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="user_name" label="姓名" width="210" />
-      <el-table-column prop="student_card" label="学生号" width="190" />
-      <el-table-column prop="garde" label="年级" width="190" />
-      <el-table-column prop="professional" label="专业" width="210" />
-      <el-table-column prop="telephone" label="电话号" width="200" />
+      <el-table-column prop="user_name" label="姓名" width="210"/>
+      <el-table-column prop="student_card" label="学生号" width="190"/>
+      <el-table-column prop="garde" label="年级" width="190"/>
+      <el-table-column prop="professional" label="专业" width="210"/>
+      <el-table-column prop="telephone" label="电话号" width="200"/>
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
           <router-link :to="'/user/edit/'+scope.row.id">
@@ -90,9 +90,10 @@ export default {
     this.getList()
   },
   methods: {
-    getList(page = 1) { // 页码参数
+    getList(page_num = 1) { // 页码参数
       /* 每次在做分页后也要调用getlist方法*/
-      this.page = page
+      this.page_num = page_num
+      this.userQuery.page_num = page_num
       // 做到分页的切换，要不然默认查询第一页数组，因为每次查询第几页页数不一样
       user.getListUser(this.userQuery)
         .then(response => {
