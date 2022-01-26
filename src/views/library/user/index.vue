@@ -32,29 +32,30 @@
         align="center"
       >
         <template slot-scope="scope">
-          {{ (page - 1) * size + scope.$index + 1 }}
+          {{ (userQuery.page_num - 1) * userQuery.page_size + scope.$index + 1 }}
         </template>
       </el-table-column>
 
-      <el-table-column prop="name" label="姓名" width="210" />
-      <el-table-column prop="name" label="学生号" width="190" />
-      <el-table-column prop="name" label="年级" width="190" />
-      <el-table-column prop="name" label="专业" width="210" />
-      <el-table-column prop="name" label="电话号" width="200" />
+      <el-table-column prop="user_name" label="姓名" width="210" />
+      <el-table-column prop="student_card" label="学生号" width="190" />
+      <el-table-column prop="garde" label="年级" width="190" />
+      <el-table-column prop="professional" label="专业" width="210" />
+      <el-table-column prop="telephone" label="电话号" width="200" />
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
-          <router-link :to="'/teacher/edit/'+scope.row.id">
+          <router-link :to="'/user/edit/'+scope.row.id">
             <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
           </router-link>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!-- 分页 -->
     <el-pagination
-      :current-page="page"
-      :page-size="size"
+      :current-page="userQuery.page_num"
+      :page-size="userQuery.page_size"
       :total="total"
       style="padding: 30px 0; text-align: center;"
       layout="total, prev, pager, next, jumper"
@@ -73,8 +74,6 @@ export default {
   data() {
     return {
       list: null,
-      page: 1, // 当前页
-      size: 6, // 每页显示数据
       total: 0, // 总记录数
       userQuery: {
         user_name: '',
@@ -98,8 +97,9 @@ export default {
       user.getListUser(this.userQuery)
         .then(response => {
           /* console.log(response)*/
-          this.list = response.data.rows
-          this.total = response.data.total
+          this.list = response.data.list
+          this.total = response.data.count
+          this.id = response.data.id
           console.log(this.list, this.total)
         })
         .catch(error => {

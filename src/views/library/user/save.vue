@@ -3,47 +3,47 @@
     <el-form label-width="120px">
       <el-form-item label="姓名" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.name" placeholder="请输入内容" />
+          <el-input v-model="user.user_name" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="性别" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.gender" placeholder="请输入内容" />
+          <el-input v-model="user.gender" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="学号" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.student_card" placeholder="请输入内容" />
+          <el-input v-model="user.student_card" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="电话号码" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.telephone" placeholder="请输入内容" />
+          <el-input v-model="user.telephone" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="年级" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.garde" placeholder="请输入内容" />
+          <el-input v-model="user.garde" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="班级" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.college" placeholder="请输入内容" />
+          <el-input v-model="user.college" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="邮箱" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.email" placeholder="请输入内容" />
+          <el-input v-model="user.email" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="专业" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.professional" placeholder="请输入内容" />
+          <el-input v-model="user.professional" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item label="住址" width="200px">
         <el-col :span="11">
-          <el-input v-model="user.address" placeholder="请输入内容" />
+          <el-input v-model="user.address" placeholder="请输入内容"/>
         </el-col>
       </el-form-item>
       <el-form-item>
@@ -72,8 +72,6 @@ export default {
         gender: '', // 性别
         email: ''// 电子邮件
       },
-      imagecropperShow: false,
-      imagecropperKey: 0, // 上传组件的key值
       BASE_API: process.env.BASE_API, // 获取dev.env.js里面端口号
       saveBtnDisabled: false// 避免多次提交表单
     }
@@ -116,7 +114,15 @@ export default {
     getInfo(id) {
       user.getUserInfo(id)
         .then(response => {
-          this.user = response.data.user
+          this.user.address = response.data.address
+          this.user.college = response.data.college
+          this.user.email = response.data.email
+          this.user.gender = response.data.gender
+          this.user.garde = response.data.garde
+          this.user.user_name = response.data.user_name
+          this.user.student_card = response.data.student_card
+          this.user.professional = response.data.professional
+          this.user.telephone = response.data.telephone
         })
     },
     // 保存或者修改
@@ -137,7 +143,7 @@ export default {
             message: '修改成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })
+          this.$router.push({path: '/user/table'})
         })
     },
     // 添加讲师的方法
@@ -149,7 +155,7 @@ export default {
             message: '保存成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })// 路由跳转，地层为重定向
+          this.$router.push({path: '/user/table'})// 路由跳转，地层为重定向
         })
     }
   }
