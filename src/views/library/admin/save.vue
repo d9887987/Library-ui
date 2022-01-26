@@ -61,8 +61,6 @@ export default {
         password: '',
         telephone: ''
       },
-      imagecropperShow: false,
-      imagecropperKey: 0, // 上传组件的key值
       BASE_API: process.env.BASE_API, // 获取dev.env.js里面端口号
       saveBtnDisabled: false// 避免多次提交表单
     }

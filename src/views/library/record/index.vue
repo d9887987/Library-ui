@@ -113,7 +113,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        record.deleteAdmin(id)
+        record.deleteRecord(id)
           .then(response => { // 删除成功，用户提示，提示信息，并重新查询结果
             this.$message({
               type: 'success',

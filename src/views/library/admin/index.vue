@@ -37,7 +37,7 @@
 
       <el-table-column prop="account" label="账户" />
 
-      <el-table-column prop="CreatedAt" label="添加时间" width="240" />
+      <el-table-column prop="created_at" label="添加时间" width="240" />
 
       <el-table-column prop="telephone" label="电话" width="200" />
 
@@ -90,9 +90,9 @@ export default {
     this.getList()
   },
   methods: {
-    getList(page = 1) { // 页码参数
+    getList(page_num = 1) { // 页码参数
       /* 每次在做分页后也要调用getlist方法*/
-      this.page = page
+      this.page_num = page_num
       // 做到分页的切换，要不然默认查询第一页数组，因为每次查询第几页页数不一样
       admin.getListAdmin(this.adminQuery)
         .then(response => {
