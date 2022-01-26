@@ -96,9 +96,9 @@ export default {
       cate.getListCate(this.cateQuery)
         .then(response => {
           /* console.log(response)*/
-          this.list = response.data.rows
-          this.total = response.data.total
-          this.id = response.data.ID
+          this.list = response.data.list
+          this.total = response.data.count
+          this.id = response.data.id
           console.log(this.list, this.total)
         })
         .catch(error => {

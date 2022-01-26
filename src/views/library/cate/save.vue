@@ -46,7 +46,7 @@
 
 <script>
 
-import admin from '@/api/admin/admin'
+import cate from '@/api/cate/cate'
 
 export default {
   data() {
@@ -59,8 +59,6 @@ export default {
         intro: '',
         avatar: ''
       },
-      imagecropperShow: false,
-      imagecropperKey: 0, // 上传组件的key值
       BASE_API: process.env.BASE_API, // 获取dev.env.js里面端口号
       saveBtnDisabled: false// 避免多次提交表单
     }
@@ -96,20 +94,20 @@ export default {
         // 调用数据会显得方法
         this.getInfo(id)
       } else { // 没有id值调用清空表单操作
-        this.admin = {}
+        this.cate = {}
       }
     },
     // 根据讲师id查询方法
     getInfo(id) {
-      admin.getAdminInfo(id)
+      cate.getAdminInfo(id)
         .then(response => {
-          this.admin = response.data.admin
+          this.cate = response.data
         })
     },
     // 保存或者修改
     saveOrUpdate() {
       // 判断是修改还是添加
-      if (!this.admin.id) {
+      if (!this.cate.id) {
         this.saveAdmin()// 调用保存的方法
       } else {
         this.updateAdmin()// 调用修改方法
@@ -117,7 +115,7 @@ export default {
     },
     // 修改用户的方法
     updateAdmin() {
-      admin.updateAdmin(this.admin)
+      cate.updateAdmin(this.cate)
         .then(response => {
           this.$message({
             type: 'success',
@@ -129,7 +127,7 @@ export default {
     },
     // 添加讲师的方法
     saveAdmin() {
-      admin.addAdmin(this.admin)
+      cate.addAdmin(this.cate)
         .then(response => { // 添加成功
           this.$message({
             type: 'success',
