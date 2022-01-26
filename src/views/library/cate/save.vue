@@ -3,28 +3,28 @@
     <el-form label-width="120px">
       <el-form-item label="分类名称" width="200px">
         <el-col :span="11">
-          <el-input v-model="cate.name" placeholder="请输入内容" />
+          <el-input v-model="cate.cate_name" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
       <el-form-item label="分类编码" width="200px">
         <el-col :span="11">
-          <el-input v-model="cate.name" placeholder="请输入内容" />
+          <el-input v-model="cate.cate_code" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
 
       <el-form-item label="位置" width="200px">
         <el-col :span="11">
-          <el-input v-model="cate.name" placeholder="请输入内容" />
+          <el-input v-model="cate.location" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
       <el-form-item label="创建时间" width="200px">
         <el-col :span="11">
-          <el-input v-model="cate.name" placeholder="可不填" />
+          <el-input v-model="cate.created_at" placeholder="可不填" />
         </el-col>
       </el-form-item>
       <el-form-item label="更新时间" width="200px">
         <el-col :span="11">
-          <el-input v-model="cate.name" placeholder="可不填" />
+          <el-input v-model="cate.updated_at" placeholder="可不填" />
         </el-col>
       </el-form-item>
 
@@ -52,12 +52,12 @@ export default {
   data() {
     return {
       cate: {
-        name: '',
-        sort: 0,
-        level: '',
-        career: '',
-        intro: '',
-        avatar: ''
+        id: '',
+        cate_name: '',
+        location: 0,
+        cate_code: '',
+        created_at: '',
+        updated_at: ''
       },
       BASE_API: process.env.BASE_API, // 获取dev.env.js里面端口号
       saveBtnDisabled: false// 避免多次提交表单
@@ -108,14 +108,14 @@ export default {
     saveOrUpdate() {
       // 判断是修改还是添加
       if (!this.cate.id) {
-        this.saveAdmin()// 调用保存的方法
+        this.saveCate()// 调用保存的方法
       } else {
-        this.updateAdmin()// 调用修改方法
+        this.updateCate()// 调用修改方法
       }
     },
     // 修改用户的方法
-    updateAdmin() {
-      cate.updateAdmin(this.cate)
+    update() {
+      cate.updateCate(this.cate)
         .then(response => {
           this.$message({
             type: 'success',
@@ -126,8 +126,8 @@ export default {
         })
     },
     // 添加讲师的方法
-    saveAdmin() {
-      cate.addAdmin(this.cate)
+    saveCate() {
+      cate.addCate(this.cate)
         .then(response => { // 添加成功
           this.$message({
             type: 'success',
