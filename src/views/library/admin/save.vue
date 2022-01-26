@@ -9,27 +9,27 @@
 
       <el-form-item label="管理员电话" width="200px">
         <el-col :span="11">
-          <el-input v-model="admin.name" placeholder="请输入名称" />
+          <el-input v-model="admin.telephone" placeholder="请输入名称" />
         </el-col>
       </el-form-item>
       <el-form-item label="管理员账户" width="200px">
         <el-col :span="11">
-          <el-input v-model="admin.name" placeholder="请输入账户" />
+          <el-input v-model="admin.account" placeholder="请输入账户" />
         </el-col>
       </el-form-item>
       <el-form-item label="管理员密码" width="200px">
         <el-col :span="11">
-          <el-input v-model="admin.name" placeholder="请输入名称" />
+          <el-input v-model="admin.password" placeholder="请输入名称" />
         </el-col>
       </el-form-item>
       <el-form-item label="创建时间" width="200px">
         <el-col :span="11">
-          <el-input v-model="admin.name" placeholder="可不填" />
+          <el-input v-model="admin.created_at" placeholder="可不填" />
         </el-col>
       </el-form-item>
       <el-form-item label="更新时间" width="200px">
         <el-col :span="11">
-          <el-input v-model="admin.name" placeholder="可不填" />
+          <el-input v-model="admin.updated_at" placeholder="可不填" />
         </el-col>
       </el-form-item>
       <!--
@@ -59,7 +59,9 @@ export default {
         name: '',
         account: 0,
         password: '',
-        telephone: ''
+        telephone: '',
+        created_at: '',
+        updated_at: ''
       },
       BASE_API: process.env.BASE_API, // 获取dev.env.js里面端口号
       saveBtnDisabled: false// 避免多次提交表单
@@ -103,7 +105,13 @@ export default {
     getInfo(id) {
       admin.getAdminInfo(id)
         .then(response => {
-          this.admin = response.data.admin
+          this.admin.id = response.data.id
+          this.admin.name = response.data.name
+          this.admin.password = response.data.password
+          this.admin.created_at = response.data.created_at
+          this.admin.updated_at = response.data.updated_at
+          this.admin.telephone = response.data.telephone
+          this.admin.account = response.data.account
         })
     },
     // 保存或者修改
@@ -124,7 +132,7 @@ export default {
             message: '修改成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })
+          this.$router.push({ path: '/admin/table' })
         })
     },
     // 添加讲师的方法
@@ -136,7 +144,7 @@ export default {
             message: '保存成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })// 路由跳转，地层为重定向
+          this.$router.push({ path: '/admin/table' })// 路由跳转，地层为重定向
         })
     }
   }

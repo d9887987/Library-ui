@@ -29,7 +29,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          {{ (page - 1) * limit + scope.$index + 1 }}
+          {{ (adminQuery.page_num - 1) * adminQuery.page_size + scope.$index + 1 }}
         </template>
       </el-table-column>
 
@@ -43,18 +43,19 @@
 
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
-          <router-link :to="'/teacher/edit/'+scope.row.id">
+          <router-link :to="'/admin/edit/'+scope.row.id">
             <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
           </router-link>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!-- 分页 -->
     <el-pagination
-      :current-page="page"
-      :page-size="limit"
+      :current-page="adminQuery.page_num"
+      :page-size="adminQuery.page_size"
       :total="total"
       style="padding: 30px 0; text-align: center;"
       layout="total, prev, pager, next, jumper"
@@ -73,8 +74,6 @@ export default {
   data() {
     return {
       list: null,
-      page: 1, // 当前页
-      limit: 6, // 每页显示数据
       total: 0, // 总记录数
       adminQuery: {
         name: '',
@@ -98,7 +97,7 @@ export default {
         .then(response => {
           /* console.log(response)*/
           this.list = response.data.list
-          this.total = response.data.total
+          this.total = response.data.count
           this.id = response.data.id
           console.log(this.list, this.total)
         })
