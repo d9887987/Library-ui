@@ -36,5 +36,13 @@ export default {
       method: 'put',
       data: cate
     })
+  },
+  // 获取分类信息详情
+  getCateInfo(id) {
+    return request({
+      url: `/library/category/cateInfo`,
+      method: 'get',
+      params: { id }
+    })
   }
 }

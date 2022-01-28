@@ -119,7 +119,7 @@ export const constantRoutes = [
     meta: { title: '书籍', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'list',
+        path: 'table',
         name: '书籍列表',
         component: () => import('@/views/library/book/index'),
         meta: { title: '书籍列表', icon: 'table' }
@@ -147,7 +147,7 @@ export const constantRoutes = [
     meta: { title: '借阅', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'list',
+        path: 'table',
         name: '记录列表',
         component: () => import('@/views/library/record/index'),
         meta: { title: '记录列表', icon: 'table' }
@@ -175,7 +175,7 @@ export const constantRoutes = [
     meta: { title: '分类', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'list',
+        path: 'table',
         name: '分类列表',
         component: () => import('@/views/library/cate/index'),
         meta: { title: '分类列表', icon: 'table' }

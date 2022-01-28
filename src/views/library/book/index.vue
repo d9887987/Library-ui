@@ -17,7 +17,8 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button>
         <el-button type="default" @click="resetData()">清空</el-button>
-      </el-form-item></el-form>
+      </el-form-item>
+    </el-form>
 
     <!-- 表格 -->
     <el-table
@@ -32,30 +33,31 @@
         align="center"
       >
         <template slot-scope="scope">
-          {{ (page - 1) * limit + scope.$index + 1 }}
+          {{ (bookQuery.page_num - 1) * bookQuery.page_size + scope.$index + 1 }}
         </template>
       </el-table-column>
 
-      <el-table-column prop="name" label="书名" width="210" />
-      <el-table-column prop="name" label="作者" width="190" />
-      <el-table-column prop="name" label="版本" width="190" />
-      <el-table-column prop="name" label="出版社" width="210" />
-      <el-table-column prop="name" label="总数" width="100" />
-      <el-table-column prop="name" label="剩余" width="100" />
+      <el-table-column prop="book_name" label="书名" width="210" />
+      <el-table-column prop="another" label="作者" width="190" />
+      <el-table-column prop="version" label="版本" width="190" />
+      <el-table-column prop="publish_house" label="出版社" width="210" />
+      <el-table-column prop="total" label="总数" width="100" />
+      <el-table-column prop="remain" label="剩余" width="100" />
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
-          <router-link :to="'/teacher/edit/'+scope.row.id">
+          <router-link :to="'/book/edit/'+scope.row.id">
             <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
           </router-link>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!-- 分页 -->
     <el-pagination
-      :current-page="page"
-      :page-size="limit"
+      :current-page="bookQuery.page_num"
+      :page-size="bookQuery.page_size"
       :total="total"
       style="padding: 30px 0; text-align: center;"
       layout="total, prev, pager, next, jumper"
@@ -74,8 +76,6 @@ export default {
   data() {
     return {
       list: null,
-      page: 1, // 当前页
-      limit: 6, // 每页显示数据
       total: 0, // 总记录数
       bookQuery: {
         another: '',
@@ -90,16 +90,17 @@ export default {
     this.getList()
   },
   methods: {
-    getList(page = 1) { // 页码参数
+    getList(page_num = 1) { // 页码参数
       /* 每次在做分页后也要调用getlist方法*/
-      this.page = page
+      this.page_num = page_num
+      this.bookQuery.page_num = page_num
       // 做到分页的切换，要不然默认查询第一页数组，因为每次查询第几页页数不一样
-      book.getListBook(this.page, this.limit, this.userQuery)
+      book.getListBook(this.bookQuery)
         .then(response => {
           /* console.log(response)*/
           this.id = response.data.id
-          this.list = response.data.rows
-          this.total = response.data.total
+          this.list = response.data.list
+          this.total = response.data.count
           console.log(this.list, this.total)
         })
         .catch(error => {
@@ -120,7 +121,7 @@ export default {
         type: 'warning'
       }).then(() => {
         book.deleteBook(id)
-          .then(reponse => { // 删除成功，用户提示，提示信息，并重新查询结果
+          .then(response => { // 删除成功，用户提示，提示信息，并重新查询结果
             this.$message({
               type: 'success',
               message: '删除成功!'

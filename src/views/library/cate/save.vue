@@ -54,7 +54,7 @@ export default {
       cate: {
         id: '',
         cate_name: '',
-        location: 0,
+        location: '',
         cate_code: '',
         created_at: '',
         updated_at: ''
@@ -99,7 +99,7 @@ export default {
     },
     // 根据讲师id查询方法
     getInfo(id) {
-      cate.getAdminInfo(id)
+      cate.getCateInfo(id)
         .then(response => {
           this.cate = response.data
         })
@@ -122,7 +122,7 @@ export default {
             message: '修改成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })
+          this.$router.push({ path: '/cate/table' })
         })
     },
     // 添加讲师的方法
@@ -134,7 +134,7 @@ export default {
             message: '保存成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })// 路由跳转，地层为重定向
+          this.$router.push({ path: '/cate/table' })// 路由跳转，地层为重定向
         })
     }
   }

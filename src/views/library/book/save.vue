@@ -3,51 +3,66 @@
     <el-form label-width="120px">
       <el-form-item label="书籍名称" width="200px">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="请输入内容" />
+          <el-input v-model="bookInfo.book.book_name" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="书籍编码" width="200px">
+        <el-col :span="11">
+          <el-input v-model="bookInfo.book.book_code" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
       <el-form-item label="书籍作者">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="请输入内容" />
+          <el-input v-model="bookInfo.book.another" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
       <el-form-item label="书籍版本">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="请输入内容" />
+          <el-input v-model="bookInfo.book.version" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
 
       <el-form-item label="书籍出版社">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="请输入内容" />
+          <el-input v-model="bookInfo.book.publish_house" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
 
       <el-form-item label="书籍分类">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="请输入内容" />
+          <el-input v-model="bookInfo.cate.cate_name" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
 
       <el-form-item label="书籍总数">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="请输入内容" />
+          <el-input v-model="bookInfo.book.total" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
 
       <el-form-item label="书籍剩余">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="请输入内容" />
+          <el-input v-model="bookInfo.book.remain" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="位置">
+        <el-col :span="11">
+          <el-input v-model="bookInfo.cate.location" placeholder="请输入内容" />
+        </el-col>
+      </el-form-item>
+      <el-form-item label="分类编码">
+        <el-col :span="11">
+          <el-input v-model="bookInfo.cate.cate_code" placeholder="请输入内容" />
         </el-col>
       </el-form-item>
       <el-form-item label="创建时间" width="200px">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="可不填" />
+          <el-input v-model="bookInfo.book.created_at" placeholder="可不填" />
         </el-col>
       </el-form-item>
       <el-form-item label="更新时间" width="200px">
         <el-col :span="11">
-          <el-input v-model="book.name" placeholder="可不填" />
+          <el-input v-model="bookInfo.book.updated_at" placeholder="可不填" />
         </el-col>
       </el-form-item>
 
@@ -73,17 +88,30 @@ import book from '@/api/book/book'
 export default {
   data() {
     return {
-      book: {
-        id: '',
-        name: '',
-        sort: 0,
-        level: 1,
-        career: '',
-        intro: '',
-        avatar: ''
+      bookInfo: {
+        book: {
+          id: '',
+          book_name: '',
+          another: '',
+          version: '',
+          publish_house: '',
+          category_id: '',
+          total: 0,
+          remain: 0,
+          book_code: '',
+          category_name: '',
+          created_at: '',
+          updated_at: ''
+        },
+        cate: {
+          id: 0,
+          created_at: '',
+          updated_at: '',
+          cate_code: '',
+          location: '',
+          cate_name: ''
+        }
       },
-      imagecropperShow: false,
-      imagecropperKey: 0, // 上传组件的key值
       BASE_API: process.env.BASE_API, // 获取dev.env.js里面端口号
       saveBtnDisabled: false// 避免多次提交表单
     }
@@ -126,7 +154,8 @@ export default {
     getInfo(id) {
       book.getBookInfo(id)
         .then(response => {
-          this.book = response.data.book
+          this.bookInfo.book = response.data.book
+          this.bookInfo.cate = response.data.cate
         })
     },
     // 保存或者修改
@@ -140,26 +169,26 @@ export default {
     },
     // 修改用户的方法
     updateBook() {
-      book.updateBook(this.user)
+      book.updateBook(this.bookInfo)
         .then(response => {
           this.$message({
             type: 'success',
             message: '修改成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })
+          this.$router.push({ path: '/book/table' })
         })
     },
     // 添加讲师的方法
     saveBook() {
-      book.addBook(this.user)
+      book.addBook(this.book)
         .then(response => { // 添加成功
           this.$message({
             type: 'success',
             message: '保存成功!'
           })
           // 返回列表
-          this.$router.push({ path: '/user/table' })// 路由跳转，地层为重定向
+          this.$router.push({ path: '/book/table' })// 路由跳转，地层为重定向
         })
     }
   }
